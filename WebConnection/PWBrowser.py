@@ -2,7 +2,7 @@ from WebConnection.Abstracts.IBrowser import IBrowser
 import asyncio
 from playwright.async_api import Browser, Playwright,async_playwright
 
-class PWBroeser(IBrowser):
+class PWBrowser(IBrowser):
 
     def __init__(self, headless: bool = True):
         self._pw: Playwright | None = None

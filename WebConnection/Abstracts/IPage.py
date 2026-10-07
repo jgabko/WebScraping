@@ -2,10 +2,18 @@ from abc import ABC,abstractmethod
 
 class IPage(ABC):
     @abstractmethod
-    async def goto(link:str)->IPage:pass
+    async def create_page(self):
+        pass
 
     @abstractmethod
-    async def content(): pass
+    async def goto(self, link):
+        pass
 
     @abstractmethod
-    async def closepage(): pass
+    async def content(self):
+        pass
+
+
+    @abstractmethod
+    async def closepage(self):
+        pass
