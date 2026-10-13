@@ -2,8 +2,8 @@ from abc import ABC,abstractmethod
 
 class ILinkQueue(ABC):
     @abstractmethod
-    def enqueue(link:str, source:str, error:str):pass
+    def enqueue(self,link:str, source:str, error:str):pass
     @abstractmethod
-    def dequeue_pending()->list:pass
+    def dequeue_pending(self)->list:pass
     @abstractmethod
-    def mark_resolved(link): pass
+    def mark_resolved(self,link): pass

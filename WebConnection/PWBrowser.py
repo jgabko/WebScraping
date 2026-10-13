@@ -11,7 +11,7 @@ class PWBrowser(IBrowser):
 
     
     async def createBrowser(self):
-       pw= async_playwright()
+       self._pw = await async_playwright().start()
        self.browser = await self._pw.chromium.launch(headless=self._headless)
        return self.browser
     
@@ -21,4 +21,4 @@ class PWBrowser(IBrowser):
             await self.browser.close()   
 
         if self._playwright:             
-            await self._playwright.stop() 
+            await self._pw.stop()

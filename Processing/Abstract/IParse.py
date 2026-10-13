@@ -3,4 +3,4 @@ from typing import Any
 
 class IParse(ABC):
     @abstractmethod
-    def parse(html:str) -> list[dict[str, Any]]: pass
+    def parse(self,html:str) -> list[dict[str, Any]]: pass

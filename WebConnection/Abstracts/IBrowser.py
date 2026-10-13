@@ -2,7 +2,7 @@ from abc import ABC,abstractmethod
 
 class IBrowser(ABC):
     @abstractmethod
-    async def createBrowser()->IBrowser:pass
+    async def createBrowser(self):pass
 
     @abstractmethod
-    async def closeBrowser(): pass
+    async def closeBrowser(self): pass

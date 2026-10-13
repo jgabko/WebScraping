@@ -5,7 +5,7 @@ class ABSFactoryPage(ABC):
 
 
     @abstractmethod
-    def __innt__(self,browser):
+    def __init__(self,browser):
         self.browser = browser
 
     @abstractmethod

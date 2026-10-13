@@ -1,16 +1,19 @@
 import abc
 from abc import abstractmethod, abstractproperty
-from typing import any
-from WebConnection.Abstracts import IBrowser, IParse,AbsFactoryPage
+from typing import Any
+from WebConnection.Abstracts import IBrowser,AbsFactoryPage
+from Processing.Abstract.IParse import IParse
+from WebConnection.Abstracts.IPaginator import IPaginator
+
 
 class ABSDataCollection(ABC):
-    @abstractmethod
-    def __init__(self,browser,pageFactory,parser,linkexp):
+    def __init__(self,browser,pagefactory,parser,linkexp,paginator):
         self.browser= browser
-        self.pageFactory = pageFactory
+        self.pagefactory = pagefactory
         self.parser= parser
         self.linkexp=linkexp
+        self.paginator = paginator
 
 
     @abstractmethod
-    def collectdata(self)->dict:pass
+    def collectdata(self)->list[dict]:pass

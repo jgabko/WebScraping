@@ -9,7 +9,7 @@ from playwright.async_api import (
 
 class PWPage(IPage):
     def __init__(self,browser:IBrowser):
-        self._Browser=browser
+        self._browser=browser
         self.page=None
 
     async def create_page(self):
@@ -26,4 +26,4 @@ class PWPage(IPage):
 
     
     async def closepage(self):
-        await self._page.close()
+        await self.page.close()

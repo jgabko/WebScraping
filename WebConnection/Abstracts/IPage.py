@@ -1,5 +1,6 @@
 from abc import ABC,abstractmethod
 
+
 class IPage(ABC):
     @abstractmethod
     async def create_page(self):
