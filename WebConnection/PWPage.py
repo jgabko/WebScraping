@@ -1,29 +1,32 @@
-from WebConnection.Abstracts.IPage import IPage
+from __future__ import annotations
+
+from playwright.async_api import Page
+
 from WebConnection.Abstracts.IBrowser import IBrowser
-from playwright.async_api import (
-    async_playwright,
-    Browser,
-    BrowserContext,
-    Playwright,
-)
+from WebConnection.Abstracts.IPage import IPage
+
 
 class PWPage(IPage):
-    def __init__(self,browser:IBrowser):
-        self._browser=browser
-        self.page=None
+    def __init__(self, browser: IBrowser) -> None:
+        self._browser: IBrowser = browser
+        self._page: Page | None = None
 
-    async def create_page(self):
-        page = await self._browser.new_page()
-        self.page=page
+    def _require_page(self) -> Page:
+        if self._page is None:
+            raise RuntimeError("Página não criada. Chame create_page() antes.")
+        return self._page
 
+    async def create_page(self) -> None:
+        self._page = await self._browser.new_page()
 
-    async def goto(self,link):
-        await self.page.goto(link)
+    async def goto(self, link: str) -> PWPage:
+        await self._require_page().goto(link)
+        return self
 
-    
-    async def content(self):
-        return await self.page.content()
+    async def content(self) -> str:
+        return await self._require_page().content()
 
-    
-    async def closepage(self):
-        await self.page.close()
+    async def closepage(self) -> None:
+        if self._page is not None:
+            await self._page.close()
+            self._page = None
